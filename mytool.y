@@ -9,7 +9,7 @@
 %%
 S: R {{if($1)printf("Output: true.");else printf("Output: false."); return 0;}}
 ;
-R: VALUE LT VALUE {$$ = ($1 < $3)}
+R: VALUE LT VALUE {$$ = ($1 < $3);}
 ;
 %%
 int main()
