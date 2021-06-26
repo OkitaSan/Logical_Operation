@@ -5,7 +5,7 @@
 digit	[0-9]
 %%
 {digit}+ {
-yylval = *yytext;
+yylval = atoi(yytext);
 return VALUE; 
 }
 [<] 	{
@@ -32,7 +32,26 @@ return GTEQ;
 yylval = *yytext;
 return LTEQ;
 }
-
+"&&" {
+	yylval = *yytext;
+	return AND;
+}
+"||" {
+	yylval = *yytext;
+	return OR;
+}
+"!" {
+	yylval = *yytext;
+	return NOT;
+}
+"(" {
+	yylval = *yytext;
+	return LPARAN;
+}
+")" {
+	yylval = *yytext;
+	return RPARAN;
+}
 %%
 int yywrap(void)
 {
