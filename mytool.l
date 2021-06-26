@@ -41,6 +41,9 @@ return LTEQ;
 ")" {
 	return RPARAN;
 }
+"\n" {
+	return END;
+}
 %%
 int yywrap(void)
 {
