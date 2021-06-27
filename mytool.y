@@ -43,7 +43,7 @@ S: LogicalOr END {{if($1.res)printf("Output: true, %d",($1.whole - $1.exec));els
 LogicalOr: LogicalAnd {$$.res = ($1.res);}
 | LogicalOr OR LogicalAnd {
 	$$.res = ($1.res || $3.res);
-	$$.whole += $3.whole;
+	$$.whole = $1.whole + $3.whole;
 	if($1.res){ // shortcut
 		$$.exec = $1.exec;
 	}else{
@@ -58,7 +58,7 @@ LogicalAnd: Single {
 }
 | LogicalAnd AND Single {{
 	$$.res = ($1.res && $3.res);
-	$$.whole += $3.whole;
+	$$.whole = $1.whole + $3.whole;
 	if(!($1.res)){ // shortcut
 		$$.exec = $1.exec;
 	}else{
